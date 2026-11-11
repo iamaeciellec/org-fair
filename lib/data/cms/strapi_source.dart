@@ -48,7 +48,8 @@ class StrapiEventSource implements EventSource {
     //   The list is in json['data']. For each item use documentId as the id.
     //   description can be null and cancelled can be null: use ?? '' and ?? false.
     //   startsAt is a String: DateTime.parse(...)
-    final dataList = json?['data'] as List<dynamic>? ?? [];
+    final map = json as Map<String, dynamic>?;
+    final dataList = map?['data'] as List<dynamic>? ?? [];
 
     return dataList.map((item) {
       final map = item as Map<String, dynamic>;
