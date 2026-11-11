@@ -59,6 +59,19 @@ class SanityEventSource implements EventSource {
     // TODO 3 (Sanity): Turn the JSON into a List<FairEvent>.
     //   The list is in json['result']. Use _id as the id.
     //   description and cancelled can be null: use ?? '' and ?? false.
-    return const [];
+    final resultList = json['result'] as List<dynamic>? ?? [];
+
+    return resultList.map((item) {
+      final map = item as Map<String, dynamic>;
+      return FairEvent(
+        id: map['_id'] as String,
+        title: map['title'] as String,
+        orgId: map['orgId'] as String,
+        startsAt: DateTime.parse(map['startsAt'] as String),
+        venue: map['venue'] as String,
+        description: map['description'] as String? ?? '',
+        cancelled: map['cancelled'] as bool? ?? false,
+      );
+    }).toList();
   }
 }

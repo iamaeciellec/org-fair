@@ -48,6 +48,19 @@ class StrapiEventSource implements EventSource {
     //   The list is in json['data']. For each item use documentId as the id.
     //   description can be null and cancelled can be null: use ?? '' and ?? false.
     //   startsAt is a String: DateTime.parse(...)
-    return const [];
+    final dataList = json['data'] as List<dynamic>? ?? [];
+
+    return dataList.map((item) {
+      final map = item as Map<String, dynamic>;
+      return FairEvent(
+        id: map['documentId'] as String,
+        title: map['title'] as String,
+        orgId: map['orgId'] as String,
+        startsAt: DateTime.parse(map['startsAt'] as String),
+        venue: map['venue'] as String,
+        description: map['description'] as String? ?? '',
+        cancelled: map['cancelled'] as bool? ?? false,
+      );
+    }).toList();
   }
 }
