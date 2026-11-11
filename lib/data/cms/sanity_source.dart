@@ -59,7 +59,7 @@ class SanityEventSource implements EventSource {
     // TODO 3 (Sanity): Turn the JSON into a List<FairEvent>.
     //   The list is in json['result']. Use _id as the id.
     //   description and cancelled can be null: use ?? '' and ?? false.
-    final resultList = json['result'] as List<dynamic>? ?? [];
+	final resultList = json?['result'] as List<dynamic>? ?? [];
 
     return resultList.map((item) {
       final map = item as Map<String, dynamic>;
