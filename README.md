@@ -1,3 +1,7 @@
+# Org Fair Application
+
+**Live Demo:** https://iamaeciellec.github.io/org-fair/
+
 # Unit 6 Assignment: Code Explanations (E1–E8)
 
 # E1: home_shell: _memberships
